@@ -1,0 +1,153 @@
+{
+  "main": {
+    "id": "c86e599fc4c2fcd4",
+    "type": "split",
+    "children": [
+      {
+        "id": "a8ca26088244c0c4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5b7b248f191e7835",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2594d2f86bb2b618",
+    "type": "split",
+    "children": [
+      {
+        "id": "34392946c409ee3e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0d4947f68710bbc4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4184d6d24a61daf7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "8db23f040a727457",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1bda5c346026a61e",
+    "type": "split",
+    "children": [
+      {
+        "id": "336661ca760b61cc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c6e3451392e736e5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7af7e5ac7c71c72b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e303be962e086f99",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "cf5143e9f41b2fd2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "5b7b248f191e7835",
+  "lastOpenFiles": [
+    "Socket programming MOC.md",
+    "Networking basics.md",
+    "xvault/Welcome.md",
+    "xvault/Socket programming MOC.md",
+    "xvault/Networking basics.md",
+    "xvault",
+    "[.md",
+    "[].md",
+    "Welcome.md"
+  ]
+}
