@@ -13,7 +13,7 @@ We can resume the process that two computers follow two communicate to each othe
   This connection makes uses of the IP address of the device, and the specified port to which the communication channel is going to "connect" and where it expects a connection. A connection of this type makes uses of sockets, that are basically one-way endpoints that allow a communication channel between devices, but it requires that the client and server implement their own sockets.
 
 
-As part of this learning i'm gonna implement a simple terminal chat that allows to users to send messages between them (a server, and a client).
+As part of this learning I'm gonna implement a simple terminal chat that allows to users to send messages between them (a server, and a client).
 
 - Each user can terminate its side of the connection writing "end"
 - Each message shows the name of the user and maybe the time, like this:
@@ -33,16 +33,16 @@ import java.io.*;
 ### Basic server
  ```plantuml
  class Server {
-	 ServerSocket serverSocket
-	 Socket clientSocket
-	 printWriter output
-	 BufferedReader input
+	 -serverSocket:ServerSocket
+	 -clientSocket:Socket
+	 -output:PrintWriter
+	 -input:BufferedReader
 
-	Server()
+	+Server()
 	
-	start(Integer port): void
+	+start(port:Integer):void
 
-	stop(): void
+	+stop():void
  }
  ```
 
@@ -80,17 +80,17 @@ this.serverSocket.close();
 
 ```plantuml
 class Client{
-	Socket clientSocket
-	PrintWriter output
-	BufferedReader input
+	-clientSocket:Socket
+	-output:PrintWriter
+	-input:BufferedReader
 
-	Client()
+	+Client()
 
-	startConnection(String ip, int port): void
+	+startConnection(ip:String,port:int):void
 	
-	sendMessageGetResponse(String msg) : String
+	+sendMessageGetResponse(msg:String):String
 
-	stopConnection() : void
+	+stopConnection():void
 }
 ```
 
@@ -119,3 +119,124 @@ this.input.close();
 this.output.close();
 this.clientSocket.close();
 ```
+
+
+## My own implementation: console_chat
+
+We are gonna implement all of this in the console-chat project.
+github: https://github.com/avm-x/console-chat
+
+ The purpose of this project is to allow a communication channel between two users and a server, that is gonna act as a middleman to deliver messages to the other.
+
+Apart from the classes above, I'm also gonna implement a custom Message class to make formatting easier.
+
+### requisites
+
+**Users:**
+- Each user can terminate its endpoint writing "end" to the console.
+- Each message shows the username of the sender, along with the time it was sent.
+
+**Server:**
+- Shows when a user stablish connection, and also when the two users are "connected".
+- If an user end its side of the communication channel, it automatically closes
+- Inspect messages for "end", so it can terminate the connection between the users
+
+
+**Message Class**
+```plantuml
+Class Message {
+	-username:String
+	-localTime:LocalTime
+	-msg:String
+
+	+Message(username:String, msg:String)
+	+Message(User user, msg:String)
+
+	+toString():String
+}
+
+```
+
+
+**User Class**
+Its purpose its to make "easier" the interaction with the server through Client class
+
+```plantuml
+class User{
+	-username:String
+	-client:Client
+
+	+User()
+	
+	+User(username:String)
+	
+	+getUsername():String
+	
+	+setUsername():void
+	
+	+getClient():Client
+	
+	+connectsTo():void
+	
+	+SendMessageGetResponse(msg:String):String
+	
+	+closeConnection():void
+}
+```
+
+
+### Server and Users interactions
+
+1._ Server init | users starts to connect
+
+
+## My own implementation II: arithmetic_server
+
+
+**Status** : **DONE** 
+**Description:**
+simple program where a user connects to the server, and sent arithmetic operations to get a result. Like "2+3" -> 5, also "+ 3 2" is also accepted. 
+
+- github: https://github.com/avm-x/arithmetic_server
+
+
+```plantuml
+class ArithmeticOperations <<static>>{
+
+	+sum(nums:List<Integer>):int
+	+sum(nums:List<Double>):int
+	
+	+minus(nums:List<Integer>):int
+	+minus(nums:List<Double>):int
+	
+	+multiply(nums:List<Integer>):int
+	+multiple(nums:List<Double>):int
+	
+	+divide(nums:List<Integer>):int
+	+divide(nums:List<Double>):int
+}
+
+```
+
+
+## Handling multiple clients
+
+Until now our server has ben a pretty simple server that can handle a single client, and if this client disconnects then it couldn't reconnect again, a pretty straightforward server. But now for our chat project we are gonna need a server that can handle multiple clients along with their i/o
+
+**server**
+- The server enters a loop where doesnt stop listening to each new request, and push them (clientHandler) into a List
+
+- The same happens with the i/o chain, with respectives i/o Lists
+
+**client**
+- A normal client, nothing extra from the base point but the Thread extension of the class
+
+**+clientHandler**
+- Handle clients connections to the server creating a thread for each client.
+- Is invoked in loop by the server for each new socket connection
+
+## 040824 UPDATE:
+
+Since i've started working with multiple clients i based my development on this mental model of three horizontally connected classes: Server, ClientHandler, Client. where ClientHandler was going to be a channel that would receive the input from the client and send it to the server, taking the output of the server, and send it to the client.
+
+ But since I started working with a different model, one where ClientHandler is the operative arm of the server i've been able to implement my chat server project.  
